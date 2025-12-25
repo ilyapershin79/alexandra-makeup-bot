@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,12 +11,11 @@ from app.routers import (
     giveaway_participant,
     post,
     course_access,
-    bot_content
+    bot_content,
 )
 
 app = FastAPI(title="Alexandra Makeup Bot API")
 
-# Разрешаем CORS для frontend (заменить * на домен фронтенда позже)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -24,7 +24,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Подключаем роутеры
 app.include_router(user.router)
 app.include_router(course.router)
 app.include_router(service.router)
@@ -34,3 +33,9 @@ app.include_router(giveaway_participant.router)
 app.include_router(post.router)
 app.include_router(course_access.router)
 app.include_router(bot_content.router)
+
+# 👇 ВАЖНО ДЛЯ RAILWAY
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port)
