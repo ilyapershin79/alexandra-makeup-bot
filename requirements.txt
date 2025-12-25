@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+python-telegram-bot
+sqlalchemy
+asyncpg
+python-dotenv
+pydantic
+passlib[bcrypt]
