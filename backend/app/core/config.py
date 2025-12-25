@@ -1,33 +1,15 @@
+from pydantic import BaseModel
 import os
 
-# =========================
-# TELEGRAM BOT
-# =========================
 
-BOT_TOKEN = os.getenv(
-    "BOT_TOKEN",
-    "8538814149:AAFh7ygU2wMe9pkBSIKYFfebGr4-SiSQAhU"
-)
+class Settings(BaseModel):
+    BOT_TOKEN: str
+    BACKEND_URL: str
+    DATABASE_URL: str
 
-# =========================
-# BACKEND
-# =========================
 
-BACKEND_URL = os.getenv(
-    "BACKEND_URL",
-    "http://127.0.0.1:8000"
-)
-
-# =========================
-# DATABASE (SUPABASE)
-# =========================
-
-SUPABASE_URL = os.getenv(
-    "SUPABASE_URL",
-    "ВСТАВЬ_SUPABASE_URL"
-)
-
-SUPABASE_KEY = os.getenv(
-    "SUPABASE_KEY",
-    "ВСТАВЬ_SUPABASE_ANON_KEY"
+settings = Settings(
+    BOT_TOKEN=os.getenv("BOT_TOKEN", ""),
+    BACKEND_URL=os.getenv("BACKEND_URL", ""),
+    DATABASE_URL=os.getenv("DATABASE_URL", ""),
 )
