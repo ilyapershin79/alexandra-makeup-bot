@@ -1,8 +1,10 @@
 fastapi
-uvicorn
-python-telegram-bot
+uvicorn[standard]
 sqlalchemy
 asyncpg
-python-dotenv
+psycopg2-binary
 pydantic
-passlib[bcrypt]
+pydantic-settings
+python-dotenv
+aiogram
+httpx
