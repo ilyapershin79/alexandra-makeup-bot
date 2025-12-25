@@ -7,7 +7,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL is None:
     raise RuntimeError("DATABASE_URL is not set")
 
-# ВАЖНО: принудительно asyncpg
+# Принудительно используем asyncpg
 if DATABASE_URL.startswith("postgresql://"):
     DATABASE_URL = DATABASE_URL.replace(
         "postgresql://",
@@ -28,6 +28,7 @@ AsyncSessionLocal = sessionmaker(
 
 Base = declarative_base()
 
+# Генератор сессии для DI
 async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
